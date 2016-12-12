@@ -37,8 +37,8 @@ namespace AMExpenses
                 firstTimeSetupStackPanel.Visibility = Visibility.Visible;
 
             }
-            displayMoney.Text = String.Format("Current Money: {0:C}", money.currentMoney.ToString());
-            displayCredit.Text = String.Format("Current Credit: {0:C}", money.currentCredit.ToString());
+            displayMoney.Text = String.Format("Current Credit: {0:C}", money.currentMoney.ToString());
+            displayCredit.Text = String.Format("Current Credit on Account: {0:C}", money.currentCredit.ToString());
 
         }
 
@@ -84,13 +84,13 @@ namespace AMExpenses
             string paymentDescription = paymentDescriptionInput.Text;
             decimal paymentMoneyAmount = decimal.Parse(paymentAmountInput.Text);
             money = Payment.newPayment(money, paymentDescription, paymentMoneyAmount);
-            MessageBox.Show("Payment Saved!");
+            MessageBox.Show("Debit Saved!");
             mainStackPanel.Visibility = Visibility.Visible;
             mainTextPanel.Visibility = Visibility.Visible;
             paymentButtonPanel.Visibility = Visibility.Hidden;
             paymentTextPanel.Visibility = Visibility.Hidden;
-            displayMoney.Text = String.Format("Current Money: {0:C}", money.currentMoney.ToString());
-            displayCredit.Text = String.Format("Current Credit: {0:C}", money.currentCredit.ToString());
+            displayMoney.Text = String.Format("Current Credit: {0:C}", money.currentMoney.ToString());
+            displayCredit.Text = String.Format("Current Credit on Account: {0:C}", money.currentCredit.ToString());
         }
 
         private void New_Credit_Click(object sender, RoutedEventArgs e)
@@ -106,13 +106,13 @@ namespace AMExpenses
             string creditDescription = creditDescriptionInput.Text;
             decimal creditMoneyAmount = decimal.Parse(creditAmountInput.Text);
             money = Credit.newCredit(money, creditDescription, creditMoneyAmount);
-            MessageBox.Show("Credit Saved!");
+            MessageBox.Show("Credit on Account Saved!");
             mainStackPanel.Visibility = Visibility.Visible;
             mainTextPanel.Visibility = Visibility.Visible;
             creditButtonPanel.Visibility = Visibility.Hidden;
             creditTextPanel.Visibility = Visibility.Hidden;
-            displayMoney.Text = String.Format("Current Money: {0:C}", money.currentMoney.ToString());
-            displayCredit.Text = String.Format("Current Credit: {0:C}", money.currentCredit.ToString());
+            displayMoney.Text = String.Format("Current Credit: {0:C}", money.currentMoney.ToString());
+            displayCredit.Text = String.Format("Current Credit on Account: {0:C}", money.currentCredit.ToString());
         }
 
         private void New_Income_Click(object sender, RoutedEventArgs e)
@@ -128,28 +128,28 @@ namespace AMExpenses
             string incomeDescription = incomeDescriptionInput.Text;
             decimal incomeMoneyAmount = decimal.Parse(incomeAmountInput.Text);
             money = Income.newIncome(money, incomeDescription, incomeMoneyAmount);
-            MessageBox.Show("Income Saved!");
+            MessageBox.Show("Credit Saved!");
             mainStackPanel.Visibility = Visibility.Visible;
             mainTextPanel.Visibility = Visibility.Visible;
             incomeButtonPanel.Visibility = Visibility.Hidden;
             incomeTextPanel.Visibility = Visibility.Hidden;
-            displayMoney.Text = String.Format("Current Money: {0:C}", money.currentMoney.ToString());
-            displayCredit.Text = String.Format("Current Credit: {0:C}", money.currentCredit.ToString());
+            displayMoney.Text = String.Format("Current Credit: {0:C}", money.currentMoney.ToString());
+            displayCredit.Text = String.Format("Current Credit on Account: {0:C}", money.currentCredit.ToString());
 
         }
 
 
         private void PaymentsTxt_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("payments.txt");
+            Process.Start("debits.txt");
         }
         private void CreditsTxt_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("credits.txt");
+            Process.Start("creditonaccount.txt");
         }
         private void IncomesTxt_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("incomes.txt");
+            Process.Start("credits.txt");
         }
         public void startupSetter()
         {

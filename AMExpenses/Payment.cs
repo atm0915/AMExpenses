@@ -38,7 +38,7 @@ namespace AMExpenses
 
 
 
-            using (StreamWriter writetext = new StreamWriter("payments.txt", true))
+            using (StreamWriter writetext = new StreamWriter("debits.txt", true))
             {
                 writetext.WriteLine(String.Format("{0:MM/dd/yyyy} | {1} | {2:C}", 
                     payment.Date, 

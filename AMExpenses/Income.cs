@@ -21,7 +21,7 @@ namespace AMExpenses
             income.moneyAmount = moneyAmountInput;
             money.currentMoney += income.moneyAmount;
 
-            using (StreamWriter writetext = new StreamWriter("incomes.txt", true))
+            using (StreamWriter writetext = new StreamWriter("credits.txt", true))
             {
                 writetext.WriteLine(String.Format("{0:MM/dd/yyyy} | {1} | {2:C}",
                     income.Date,
