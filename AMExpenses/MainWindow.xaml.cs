@@ -83,7 +83,7 @@ namespace AMExpenses
         {
             string paymentDescription = paymentDescriptionInput.Text;
             decimal paymentMoneyAmount = decimal.Parse(paymentAmountInput.Text);
-            money = Payment.newPayment(money, paymentDescription, paymentMoneyAmount);
+            money = Payment.newPayment(money, paymentDescription, paymentMoneyAmount, ignoreCreditOnAccountCheckBox);
             MessageBox.Show("Debit Saved!");
             mainStackPanel.Visibility = Visibility.Visible;
             mainTextPanel.Visibility = Visibility.Visible;
@@ -142,6 +142,8 @@ namespace AMExpenses
         private void PaymentsTxt_Click(object sender, RoutedEventArgs e)
         {
             Process.Start("debits.txt");
+
+
         }
         private void CreditsTxt_Click(object sender, RoutedEventArgs e)
         {

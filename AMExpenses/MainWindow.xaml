@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AMExpenses"
         mc:Ignorable="d"
-        Title="AMExpenses" Height="375" Width="300" Closing="Window_Closing">
+        Title="AMExpenses" Height="383.786" Width="300" Closing="Window_Closing">
     <Grid >
 
         <StackPanel x:Name="firstTimeSetupStackPanel" Visibility="Hidden">
@@ -49,7 +49,7 @@
             <TextBlock FontSize="18" x:Name="displayCredit">
                 Current Credit On Account:
             </TextBlock>
-            <Menu x:Name="menu" Height="100"/>
+
         </StackPanel>
         <StackPanel x:Name="mainStackPanel" Margin="0,212,0,0" RenderTransformOrigin="0.518,0.933" Visibility="Visible">
             <Button Content="New Debit" FontSize="18" Height="44" Click="New_Payment_Click" />
@@ -72,6 +72,13 @@
             <TextBox Height="38" FontSize="18" TextWrapping="Wrap" x:Name="paymentAmountInput">
 
             </TextBox>
+
+            <CheckBox  x:Name="ignoreCreditOnAccountCheckBox">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                </CheckBox.LayoutTransform>
+                Ignore Credit on Account?
+            </CheckBox>
 
         </StackPanel>
         <StackPanel x:Name="paymentButtonPanel" Margin="0,294,0,0" Visibility="Hidden">
