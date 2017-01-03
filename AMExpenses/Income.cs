@@ -19,7 +19,7 @@ namespace AMExpenses
             income.Date = DateTime.Now;
             income.Description = description;
             income.moneyAmount = moneyAmountInput;
-            money.currentMoney += income.moneyAmount;
+            money.CurrentMoney += income.moneyAmount;
 
             using (StreamWriter writetext = new StreamWriter("credits.txt", true))
             {

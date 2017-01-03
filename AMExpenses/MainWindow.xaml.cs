@@ -23,11 +23,13 @@ namespace AMExpenses
     public partial class MainWindow : Window
     {
         Money money = new Money();
+        
         bool firstTimeSetup;
 
         public MainWindow()
         {
             InitializeComponent();
+            money.AmountChanged += new AmountChangedDelegate(setTotalText);
             startupSetter();
             if (firstTimeSetup == true)
             {
@@ -37,15 +39,17 @@ namespace AMExpenses
                 firstTimeSetupStackPanel.Visibility = Visibility.Visible;
 
             }
-            displayMoney.Text = String.Format("Current Credit: {0:C}", money.currentMoney.ToString());
-            displayCredit.Text = String.Format("Current Credit on Account: {0:C}", money.currentCredit.ToString());
+            displayMoney.Text = String.Format("Current Credit: {0:C}", money.CurrentMoney);
+            displayCredit.Text = String.Format("Current Credit on Account: {0:C}", money.CurrentCredit);
+            setTotalText(money);
+
 
         }
 
         private void exitFirstTimeSetupButton_Click(object sender, RoutedEventArgs e)
         {
-            money.currentMoney = decimal.Parse(firstTimeSetupMoneyInput.Text);
-            money.currentCredit = decimal.Parse(firstTimeSetupCreditInput.Text);
+            money.CurrentMoney = decimal.Parse(firstTimeSetupMoneyInput.Text);
+            money.CurrentCredit = decimal.Parse(firstTimeSetupCreditInput.Text);
             firstTimeSetup = false;
             MessageBox.Show("Please restart the application");
             Application.Current.Shutdown();
@@ -63,8 +67,8 @@ namespace AMExpenses
             using (StreamWriter writetext = new StreamWriter("startup"))
             {
                 writetext.WriteLine(firstTimeSetup.ToString());
-                writetext.WriteLine(money.currentMoney.ToString());
-                writetext.WriteLine(money.currentCredit.ToString());
+                writetext.WriteLine(money.CurrentMoney.ToString());
+                writetext.WriteLine(money.CurrentCredit.ToString());
 
 
             }
@@ -89,8 +93,8 @@ namespace AMExpenses
             mainTextPanel.Visibility = Visibility.Visible;
             paymentButtonPanel.Visibility = Visibility.Hidden;
             paymentTextPanel.Visibility = Visibility.Hidden;
-            displayMoney.Text = String.Format("Current Credit: {0:C}", money.currentMoney.ToString());
-            displayCredit.Text = String.Format("Current Credit on Account: {0:C}", money.currentCredit.ToString());
+            displayMoney.Text = String.Format("Current Credit: {0:C}", money.CurrentMoney);
+            displayCredit.Text = String.Format("Current Credit on Account: {0:C}", money.CurrentCredit);
         }
 
         private void New_Credit_Click(object sender, RoutedEventArgs e)
@@ -111,8 +115,8 @@ namespace AMExpenses
             mainTextPanel.Visibility = Visibility.Visible;
             creditButtonPanel.Visibility = Visibility.Hidden;
             creditTextPanel.Visibility = Visibility.Hidden;
-            displayMoney.Text = String.Format("Current Credit: {0:C}", money.currentMoney.ToString());
-            displayCredit.Text = String.Format("Current Credit on Account: {0:C}", money.currentCredit.ToString());
+            displayMoney.Text = String.Format("Current Credit: {0:C}", money.CurrentMoney);
+            displayCredit.Text = String.Format("Current Credit on Account: {0:C}", money.CurrentCredit);
         }
 
         private void New_Income_Click(object sender, RoutedEventArgs e)
@@ -133,8 +137,8 @@ namespace AMExpenses
             mainTextPanel.Visibility = Visibility.Visible;
             incomeButtonPanel.Visibility = Visibility.Hidden;
             incomeTextPanel.Visibility = Visibility.Hidden;
-            displayMoney.Text = String.Format("Current Credit: {0:C}", money.currentMoney.ToString());
-            displayCredit.Text = String.Format("Current Credit on Account: {0:C}", money.currentCredit.ToString());
+            displayMoney.Text = String.Format("Current Credit: {0:C}", money.CurrentMoney);
+            displayCredit.Text = String.Format("Current Credit on Account: {0:C}", money.CurrentCredit);
 
         }
 
@@ -158,10 +162,16 @@ namespace AMExpenses
             using (StreamReader sr = new StreamReader("startup"))
             {
                 firstTimeSetup = Convert.ToBoolean(sr.ReadLine());
-                money.currentMoney = decimal.Parse(sr.ReadLine());
-                money.currentCredit = decimal.Parse(sr.ReadLine());
+                money.CurrentMoney = decimal.Parse(sr.ReadLine());
+                money.CurrentCredit = decimal.Parse(sr.ReadLine());
 
             }
+        }
+        public void setTotalText(Money sender)
+        {
+            decimal total = sender.CurrentCredit + sender.CurrentMoney;
+            displayTotal.Text = String.Format($"Total: {total:C}");
+
         }
     }
 }

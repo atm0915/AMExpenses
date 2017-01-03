@@ -22,24 +22,24 @@ namespace AMExpenses
             payment.moneyAmount = moneyAmountInput;
             if (ignoreCreditOnAccountCheckBox.IsChecked == true)
             {
-                money.currentMoney -= payment.moneyAmount;
+                money.CurrentMoney -= payment.moneyAmount;
             }
             else
             {
-                if (money.currentCredit > 0 && money.currentCredit > payment.moneyAmount)
+                if (money.CurrentCredit > 0 && money.CurrentCredit > payment.moneyAmount)
                 {
-                    money.currentCredit -= payment.moneyAmount;
+                    money.CurrentCredit -= payment.moneyAmount;
                 }
-                else if (money.currentCredit > 0 && money.currentCredit <= payment.moneyAmount)
+                else if (money.CurrentCredit > 0 && money.CurrentCredit <= payment.moneyAmount)
                 {
-                    money.currentCredit -= payment.moneyAmount;
-                    decimal newAmount = money.currentCredit * -1;
-                    money.currentMoney -= newAmount;
-                    money.currentCredit = 0;
+                    money.CurrentCredit -= payment.moneyAmount;
+                    decimal newAmount = money.CurrentCredit * -1;
+                    money.CurrentMoney -= newAmount;
+                    money.CurrentCredit = 0;
                 }
-                else if (money.currentCredit == 0)
+                else if (money.CurrentCredit == 0)
                 {
-                    money.currentMoney -= payment.moneyAmount;
+                    money.CurrentMoney -= payment.moneyAmount;
                 }
             }
 

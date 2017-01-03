@@ -44,11 +44,15 @@
         </DockPanel>
         <StackPanel x:Name="mainTextPanel" Margin="0,26,0,153" Visibility="Visible">
             <TextBlock FontSize="18" x:Name="displayMoney">
-                Current Credit:
+                Current Credit: ???
             </TextBlock>
             <TextBlock FontSize="18" x:Name="displayCredit">
-                Current Credit On Account:
+                Current Credit On Account: ???
             </TextBlock>
+            <TextBlock FontSize="18" x:Name="displayTotal">
+                Total: ???
+            </TextBlock>
+
 
         </StackPanel>
         <StackPanel x:Name="mainStackPanel" Margin="0,212,0,0" RenderTransformOrigin="0.518,0.933" Visibility="Visible">

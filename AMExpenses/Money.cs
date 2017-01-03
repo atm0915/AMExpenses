@@ -6,10 +6,38 @@ using System.Threading.Tasks;
 
 namespace AMExpenses
 {
-    class Money
+    public class Money
     {
-        public decimal currentMoney { get; set; }
-        public decimal currentCredit { get; set; }
+        private decimal _currentmoney;
+        private decimal _currentcredit;
+
+
+        public decimal CurrentMoney
+        {
+            get
+            {
+                return _currentmoney;
+            }
+            set
+            {
+                _currentmoney = value;
+                AmountChanged(this);
+            }
+        }
+        public decimal CurrentCredit
+        {
+            get
+            {
+                return _currentcredit;
+            }
+            set
+            {
+                _currentcredit = value;
+                AmountChanged(this);
+            }
+        }
+
+        public event AmountChangedDelegate AmountChanged;
 
 
 

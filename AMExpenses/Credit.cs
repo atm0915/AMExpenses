@@ -19,7 +19,7 @@ namespace AMExpenses
             credit.Date = DateTime.Now;
             credit.Description = description;
             credit.moneyAmount = moneyAmountInput;
-            money.currentCredit += credit.moneyAmount;
+            money.CurrentCredit += credit.moneyAmount;
             using (StreamWriter writetext = new StreamWriter("creditonaccount.txt", true))
             {
                 writetext.WriteLine(String.Format("{0:MM/dd/yyyy} | {1} | {2:C}",
