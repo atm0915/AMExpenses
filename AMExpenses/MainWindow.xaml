@@ -7,7 +7,9 @@
         mc:Ignorable="d"
         Title="AMExpenses" Height="383.786" Width="300" Closing="Window_Closing">
     <Grid >
-
+        <StackPanel x:Name="loginStackPanel" Visibility="Hidden">
+            
+        </StackPanel>
         <StackPanel x:Name="firstTimeSetupStackPanel" Visibility="Hidden">
             <TextBlock FontSize="17" TextWrapping="Wrap">
                 First Time Setup Initiated... <LineBreak/>
@@ -33,9 +35,9 @@
         <DockPanel x:Name="toolbar">
             <ToolBarTray DockPanel.Dock="Top">
                 <ToolBar>
-                    <Button Content="debits.txt" Click="PaymentsTxt_Click"/>
-                    <Button Content="creditonaccout.txt" Click="CreditsTxt_Click"/>
-                    <Button Content="credits.txt" Click="IncomesTxt_Click"/>
+                    <Button Content="debits.txt" Click="DebitsTxt_Click"/>
+                    <Button Content="creditsonaccount.txt" Click="CreditOnAccountsTxt_Click"/>
+                    <Button Content="credits.txt" Click="CreditsTxt_Click"/>
 
 
 
@@ -43,10 +45,10 @@
             </ToolBarTray>
         </DockPanel>
         <StackPanel x:Name="mainTextPanel" Margin="0,26,0,153" Visibility="Visible">
-            <TextBlock FontSize="18" x:Name="displayMoney">
+            <TextBlock FontSize="18" x:Name="displayCredit">
                 Current Credit: ???
             </TextBlock>
-            <TextBlock FontSize="18" x:Name="displayCredit">
+            <TextBlock FontSize="18" x:Name="displayCreditOnAccount">
                 Current Credit On Account: ???
             </TextBlock>
             <TextBlock FontSize="18" x:Name="displayTotal">
@@ -54,26 +56,27 @@
             </TextBlock>
 
 
+
         </StackPanel>
         <StackPanel x:Name="mainStackPanel" Margin="0,212,0,0" RenderTransformOrigin="0.518,0.933" Visibility="Visible">
-            <Button Content="New Debit" FontSize="18" Height="44" Click="New_Payment_Click" />
-            <Button Content="New Credit" FontSize="18" Height="44"  Click="New_Income_Click"/>
-            <Button Content="New Credit on Account" FontSize="18" Height="44" Click="New_Credit_Click" />
+            <Button Content="New Debit" FontSize="18" Height="44" Click="New_Debit_Click" />
+            <Button Content="New Credit" FontSize="18" Height="44"  Click="New_Credit_Click"/>
+            <Button Content="New Credit on Account" FontSize="18" Height="44" Click="New_Credit_On_Account_Click" />
 
 
         </StackPanel>
 
-        <StackPanel x:Name="paymentTextPanel" Visibility="Hidden" Margin="0,26,0,0">
+        <StackPanel x:Name="debitTextPanel" Visibility="Hidden" Margin="0,26,0,0">
             <TextBlock FontSize="18" TextWrapping="Wrap">
                 Please enter the description of the debit:
             </TextBlock>
-            <TextBox Height="38" FontSize="18" TextWrapping="Wrap" x:Name="paymentDescriptionInput">
+            <TextBox Height="38" FontSize="18" TextWrapping="Wrap" x:Name="debitDescriptionInput">
                 
             </TextBox>
             <TextBlock FontSize="18" TextWrapping="Wrap">
                 Please enter the dollar amount of the debit:
             </TextBlock>
-            <TextBox Height="38" FontSize="18" TextWrapping="Wrap" x:Name="paymentAmountInput">
+            <TextBox Height="38" FontSize="18" TextWrapping="Wrap" x:Name="debitAmountInput">
 
             </TextBox>
 
@@ -85,20 +88,40 @@
             </CheckBox>
 
         </StackPanel>
-        <StackPanel x:Name="paymentButtonPanel" Margin="0,294,0,0" Visibility="Hidden">
-            <Button FontSize="18" Height="48" Click="Save_Payment_Info_Click">
+        <StackPanel x:Name="debitButtonPanel" Margin="0,294,0,0" Visibility="Hidden">
+            <Button FontSize="18" Height="48" Click="Save_Debit_Info_Click">
                 New Debit
+            </Button>
+        </StackPanel>
+        <StackPanel x:Name="creditOnAccountTextPanel" Visibility="Hidden" Margin="0,26,0,0">
+            <TextBlock FontSize="18" TextWrapping="Wrap">
+                Please enter the description of the credit on account:
+            </TextBlock>
+            <TextBox Height="38" FontSize="18" TextWrapping="Wrap" x:Name="creditOnAccountDescriptionInput">
+
+            </TextBox>
+            <TextBlock FontSize="18" TextWrapping="Wrap">
+                Please enter the dollar amount of the credit on account:
+            </TextBlock>
+            <TextBox Height="38" FontSize="18" TextWrapping="Wrap" x:Name="creditOnAccountAmountInput">
+
+            </TextBox>
+
+        </StackPanel>
+        <StackPanel x:Name="creditOnAccountButtonPanel" Margin="0,294,0,0" Visibility="Hidden">
+            <Button FontSize="18" Height="48" Click="Save_Credit_On_Account_Info_Click">
+                New Credit on Account
             </Button>
         </StackPanel>
         <StackPanel x:Name="creditTextPanel" Visibility="Hidden" Margin="0,26,0,0">
             <TextBlock FontSize="18" TextWrapping="Wrap">
-                Please enter the description of the credit on account:
+                Please enter the description of the credit:
             </TextBlock>
             <TextBox Height="38" FontSize="18" TextWrapping="Wrap" x:Name="creditDescriptionInput">
 
             </TextBox>
             <TextBlock FontSize="18" TextWrapping="Wrap">
-                Please enter the dollar amount of the credit on account:
+                Please enter the dollar amount of the credit:
             </TextBlock>
             <TextBox Height="38" FontSize="18" TextWrapping="Wrap" x:Name="creditAmountInput">
 
@@ -107,26 +130,6 @@
         </StackPanel>
         <StackPanel x:Name="creditButtonPanel" Margin="0,294,0,0" Visibility="Hidden">
             <Button FontSize="18" Height="48" Click="Save_Credit_Info_Click">
-                New Credit on Account
-            </Button>
-        </StackPanel>
-        <StackPanel x:Name="incomeTextPanel" Visibility="Hidden" Margin="0,26,0,0">
-            <TextBlock FontSize="18" TextWrapping="Wrap">
-                Please enter the description of the credit:
-            </TextBlock>
-            <TextBox Height="38" FontSize="18" TextWrapping="Wrap" x:Name="incomeDescriptionInput">
-
-            </TextBox>
-            <TextBlock FontSize="18" TextWrapping="Wrap">
-                Please enter the dollar amount of the credit:
-            </TextBlock>
-            <TextBox Height="38" FontSize="18" TextWrapping="Wrap" x:Name="incomeAmountInput">
-
-            </TextBox>
-
-        </StackPanel>
-        <StackPanel x:Name="incomeButtonPanel" Margin="0,294,0,0" Visibility="Hidden">
-            <Button FontSize="18" Height="48" Click="Save_Income_Info_Click">
                 New Credit
             </Button>
         </StackPanel>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,8 @@ namespace AMExpenses
             credit.Description = description;
             credit.moneyAmount = moneyAmountInput;
             money.CurrentCredit += credit.moneyAmount;
-            using (StreamWriter writetext = new StreamWriter("creditonaccount.txt", true))
+
+            using (StreamWriter writetext = new StreamWriter("credits.txt", true))
             {
                 writetext.WriteLine(String.Format("{0:MM/dd/yyyy} | {1} | {2:C}",
                     credit.Date,
@@ -28,7 +30,16 @@ namespace AMExpenses
                     credit.moneyAmount));
 
             }
+            SqlConnection conn = new SqlConnection("Data Source=(local);Initial Catalog=AMExpenses;User ID=sa;Password=***REMOVED***");
+            conn.Open();
+            string command = String.Format("INSERT INTO atm0915Log (Type, Date, Description, Amount) VALUES ('Credit', '{0:MM/dd/yyyy}', '{1}', '{2:C}')", credit.Date, credit.Description, credit.moneyAmount);
+            SqlCommand log = new SqlCommand(command, conn);
+
+
+            log.ExecuteNonQuery();
+            conn.Close();
             return money;
+
         }
 
     }
