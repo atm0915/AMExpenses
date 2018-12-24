@@ -8,10 +8,22 @@ namespace AMExpenses
 {
     public class Money
     {
+        private decimal _currentmoney;
         private decimal _currentcredit;
-        private decimal _currentcreditonaccount;
 
 
+        public decimal CurrentMoney
+        {
+            get
+            {
+                return _currentmoney;
+            }
+            set
+            {
+                _currentmoney = value;
+                AmountChanged(this);
+            }
+        }
         public decimal CurrentCredit
         {
             get
@@ -21,18 +33,6 @@ namespace AMExpenses
             set
             {
                 _currentcredit = value;
-                AmountChanged(this);
-            }
-        }
-        public decimal CurrentCreditOnAccount
-        {
-            get
-            {
-                return _currentcreditonaccount;
-            }
-            set
-            {
-                _currentcreditonaccount = value;
                 AmountChanged(this);
             }
         }
